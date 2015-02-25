@@ -1,0 +1,6 @@
+target/*
+.sonar/*
+${BUILD_PATH}/*
+groovy/*
+node_modules/*
+.svn/*

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="adminServices" class="com.tryzens.portal.lms.admin.task.AdminServicesImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="roleDao" ref="roleDao"></property>
+		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
+		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
+		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
+		<property name="weekendWorkingDao" ref="weekendWorkingDao"></property>
+		<property name="accountActivationEmail" ref="accountActivationEmail"></property>
+		<property name="passwordEncoder" ref="passwordEncoder"></property>
+		<property name="skillsDao" ref="skillsDao"></property>
+		<property name="userHolidaysDao" ref="userHolidaysDao"></property>
+		<property name="calculateLeaves" ref="calculateLeaves"></property>
+		<property name="experienceDao" ref="experienceDao"></property>
+		<property name="adminGenericEmail" ref="adminGenericEmail"></property>
+	</bean>
+	<bean id="userServices" class="com.tryzens.portal.lms.user.task.UserServicesImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
+		<property name="forgotPasswordEmail" ref="forgotPasswordEmail"></property>
+		<property name="passwordEncoder" ref="passwordEncoder"></property>
+		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
+		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
+		<property name="weekendWorkingDao" ref="weekendWorkingDao"></property>
+
+		<property name="leaveCancellationRequestNotification" ref="leaveCancellationRequestNotification"></property>
+		<property name="bankHolidayWorkingRequestNotification" ref="bankHolidayWorkingRequestNotification"></property>
+		<property name="workFromHomeCancellationRequestNotification"
+			ref="workFromHomeCancellationRequestNotification"></property>
+		<property name="weekendWorkingCancellationRequestNotification"
+			ref="weekendWorkingCancellationRequestNotification"></property>
+		<property name="bankHolidayWorkingCancellationRequestNotification"
+			ref="bankHolidayWorkingCancellationRequestNotification"></property>
+
+	</bean>
+	<bean id="managerServices" class="com.tryzens.portal.lms.manager.task.ManagerServicesImpl">
+		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
+		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
+		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
+		<property name="weekendWorkingDao" ref="weekendWorkingDao"></property>
+
+	</bean>
+	
+	<bean id="xlsxAttendanceParser" class="com.tryzens.portal.lms.admin.attendance.XlsxAttendanceParser">
+	</bean>
+	
+	<bean id="xlsAttendanceParser" class="com.tryzens.portal.lms.admin.attendance.XlsAttendanceParser">
+	</bean>
+	
+	<bean id="attendanceParserFactory" class="com.tryzens.portal.lms.admin.attendance.AttendanceParserFactory">
+		<property name="xlsxAttendanceParser" ref="xlsxAttendanceParser"></property>
+		<property name="xlsAttendanceParser" ref="xlsAttendanceParser"></property>
+	</bean>
+	
+	<bean id="attendanceService" class="com.tryzens.portal.lms.admin.task.AttendanceServiceImpl">
+		<property name="attendanceParserFactory" ref="attendanceParserFactory"></property>
+		<property name="attendanceDao" ref="attendanceDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="adminServices" ref="adminServices"></property>
+	</bean>
+
+</beans>	

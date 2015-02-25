@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
+
+<!-- /.col-lg-8 -->
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<i class="fa fa-bell fa-fw"></i> Skill Matrix
+		</div>
+		<!-- /.panel-heading -->
+		<div class="panel-body">
+			<div class="list-group">
+				<c:forEach items="${skills}" var="userSkills">
+					<a href="#" class="list-group-item">
+						<div class="row">
+							
+							<div class="col-lg-8"><i class="fa fa-star fa-fw"></i> <strong>${userSkills.skill.name}</strong></div>
+							<div class="col-lg-4"><input type="number" value="${userSkills.rating}"
+										class="rating" min=0 max=5 step=1 data-size="xs" data-showClear="false" disabled="true"/></div>
+										
+						</div>
+					</a>
+							
+				</c:forEach>				
+				
+			</div>
+
+		</div>
+		<!-- /.panel-body -->
+	</div>
+	<!-- /.panel -->
+
+	<!-- /.panel -->
+
+	<!-- /.panel .chat-panel -->
+</div>
+<!-- /.col-lg-4 -->

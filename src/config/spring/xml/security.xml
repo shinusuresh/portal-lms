@@ -1,0 +1,84 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<security:http pattern="/css/**" security="none" />
+	<security:http pattern="/js/**" security="none" />
+	<security:http pattern="/images/**" security="none" />
+	<security:http pattern="/less/**" security="none" />
+	<security:http pattern="/font*/**" security="none" />
+	<security:http pattern="/index.html" security="none" />
+	<security:http pattern="/logon.do" security="none" />
+	<security:http pattern="/login.do" security="none" />
+	<security:http pattern="/403.do" security="none" />
+	<security:http pattern="/.*useractions\.do\?method=activateUser.*"
+		security="none" path-type="regex" />
+
+
+	<bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<security:http auto-config="true" use-expressions="true">
+
+		<!-- Admin only accessible actions -->
+		<security:intercept-url pattern="/addCalendarHoliday.do" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/applyleave.do" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/employeelist.do" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/addLeave.do" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/editUserProfile.do" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/deleteCalendarHolidays.do" access="hasAnyRole('ROLE_ADMIN')" />
+
+		<!-- Manger + admin accessible actions -->
+		<security:intercept-url pattern="/listusers.do" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		<security:intercept-url pattern="/useractions.do" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		<security:intercept-url pattern="/for_approval.do" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		<security:intercept-url pattern="/requestProcess.do" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		
+		<!-- Common protection -->
+		<security:intercept-url pattern="/userDashboardActions.do" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER','ROLE_USER')" />
+		<security:intercept-url pattern="/skillset.do" access="isAuthenticated()" />
+		<security:intercept-url pattern="/*.ajax" access="isAuthenticated()" />
+
+		<security:form-login login-page="/login.do"
+			always-use-default-target="true" default-target-url="/userDashboardActions.do?method=listHolidaysAndLeaves"
+			authentication-failure-url="/login.do?error=authorizationFailed" />
+		<security:access-denied-handler
+			error-page="/403.do" />
+		<security:logout delete-cookies="JSESSIONID" />
+
+		<!-- Remeber me -->
+		<security:remember-me key="$Tryzens123" />
+		
+		<!-- Session management -->
+		<security:session-management>
+		    <security:concurrency-control expired-url="/login.do" max-sessions="2" />
+		</security:session-management>
+	</security:http>
+
+	<!-- For password encryption -->
+	<bean
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"
+		id="passwordEncoder" />
+
+	<!-- Custom Portal UserDetails  -->
+	<bean class="com.tryzens.portal.login.service.PortalUserDetailsService" id="portalUserDetails">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- DAO Authetication provider -->
+	<bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" id="daoAuthenticationProvider">
+		<property name="userDetailsService" ref="portalUserDetails"></property>
+		<property name="passwordEncoder" ref="passwordEncoder"></property>
+	</bean>
+	
+	<security:authentication-manager>		
+		<security:authentication-provider ref="daoAuthenticationProvider">
+			
+		</security:authentication-provider>		
+
+	</security:authentication-manager>
+</beans>

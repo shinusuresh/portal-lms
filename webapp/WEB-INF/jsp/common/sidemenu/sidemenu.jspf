@@ -1,0 +1,251 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%-- Identify the selection and highlight the sidebar --%>
+<c:choose>
+	<c:when test="${not empty param.selection}">
+		<c:set var="selected" value="${param.selection}" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="selected" value="home" />
+	</c:otherwise>
+</c:choose>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	<c:if test="${fn:contains(param.selection, 'skills')}">
+		$("#skills").addClass("active");
+		$("#skills").each(function( i, ul_list ) {			
+			$(ul_list).find('ul').each(function(j, ul){				
+				 $( this ).addClass("collapse in");
+	        });			 
+		});
+	</c:if>
+
+	//collapse in the parent ul
+	console.log($("#<c:out value="${selected}"/>").closest('ul'));
+	$("#<c:out value="${selected}"/>").closest('ul').addClass("collapse in");
+	$("#<c:out value="${selected}"/>").addClass("active");
+
+});	
+</script>
+<div class="navbar-default sidebar" role="navigation">
+
+	<div class="sidebar-nav navbar-collapse">
+		<ul class="nav" id="side-menu">
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+				<c:set var="homeOf" value="Home (Admin)" />
+			</sec:authorize>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<c:set var="homeOf" value="Home (Manager)" />
+			</sec:authorize>
+			<sec:authorize access="hasAnyRole('ROLE_USER')">
+				<c:set var="homeOf" value="Home (User)" />
+			</sec:authorize>
+			<li><a id="home"
+				href="userDashboardActions.do?method=listHolidaysAndLeaves"><i
+					class="fa fa-home fa-fw"></i> <c:out value="${homeOf}" /></a></li>
+
+			<!-- ADMIN navbar -->
+
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+				<li><a href="#"><i class="fa fa-group"></i> Users
+						Management <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" id="usersMgmt">
+						<li><a id="addemployee"
+							href="useractions.do?method=load&selection=addemployee"><i
+								class="fa fa-plus"></i> Add Employee </a></li>
+						<li><a id="employeelist"
+							href="employeelist.do?method=listUsers&selection=employeelist"><i
+								class="fa fa-list fa-fw"></i> Employee List </a></li>
+					</ul>
+				</li>
+				<li><a href="#"><i class="fa fa-tachometer"></i> Holiday Management <span class="fa arrow"></span></a>
+
+					<ul class="nav nav-second-level" id="holidayMgmt">
+						<li><a id="addholidays"
+							href="addCalendarHoliday.do?method=listHolidaysToCalendar&selection=addholidays"><i
+								class="fa fa-bar-chart-o fa-fw"></i> Public holidays</a></li>
+						<li><a id="detailedlog"
+							href="detailed_log.do?method=listAllRequestByYear&selection=detailedlog"><i
+								class="fa fa-table fa-fw"></i> Detailed Log</a></li>
+						<li><a href="#"><i class="fa fa-inbox fa-fw"></i> For
+								Approval <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level" id="forApproval">
+
+								<li><a id="cancellationRequests"
+									href="approved_cancellation.do?method=listRequestsForApproval"><i
+										class="fa fa-inbox fa-fw"></i>Cancellation Requests</a></li>
+
+								<li><a id="leaveRequest"
+									href="for_approval.do?method=listRequestsForApproval&selection=forapproval"><i
+										class="fa fa-inbox fa-fw"></i>Leave Requests</a></li>
+							</ul></li>
+						<li><a id="escalated_request"
+							href="escalated_requests.do?method=listRequestsForApproval&selection=escalated_request"><i
+								class="fa fa-inbox fa-fw"></i> Escalated requests</a></li>
+						<li><a id="user_holidays" href="user_holidays.do?method=listUserHolidays&selection=user_holidays"><i
+								class="fa fa-history fa-fw"></i> User Holidays</a></li>
+						<li><a id="search_employee" href="monthlyLeaves.do?method=listAllRequestOfUserBymonthAndYear&selection=search_employee"><i
+							class="fa fa-bar-chart-o fa-fw"></i>Employee Leaves</a>
+						</li>
+					</ul> <!-- /.nav-second-level -->
+				</li>
+				<li>
+					<a href="#"><i
+						class="fa fa-sign-in"></i>&nbsp;<i class="fa fa-sign-out"></i> Attendance Management <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" id="attendanceMgmt">
+						<li><a id="uploadattendance"
+							href="fileUpload.do?method=load&selection=uploadattendance"><i
+								class="fa fa-upload"></i> Upload Attendance </a></li>						
+						<li><a id="listAttendance"
+							href="user_attendance.do?method=listAttendance&selection=listAttendance"><i
+								class="fa fa-list fa-fw"></i> View Attendance </a></li>
+					</ul>
+				</li>
+					
+				
+			</sec:authorize>
+
+
+			<!-- -------------------MANAGER navbar-------------------- -->
+			<sec:authorize ifAllGranted="ROLE_MANAGER">
+				<li><a href="#"><i class="fa fa-envelope fa-fw"></i>Leave
+						Management <span class="fa arrow"></span></a>
+
+					<ul class="nav nav-second-level">
+						<li><a id="newrequest"
+							href="applyleave_user.do?method=listAllRequestsOfLastTwoYearsByUserId&selection=newrequest"><i
+								class="fa fa-envelope fa-fw"></i> New Request</a></li>
+						<li><a id="rendingrequest"
+							href="pending_request.do?method=listAllPendingRequestOfUser&selection=pendingrequest"><i
+								class="fa fa-tasks fa-fw"></i> Pending Request</a></li>
+						<li><a id="bankholidayworking"
+							href="bankHolidayRequest.do?method=listAllRequestsOfLastTwoYearsByUserId&selection=bankholidayworking"><i
+								class="fa fa-tasks fa-fw"></i> Bank Holiday Working Request</a></li>
+						<li><a id="Approvedrequest"
+							href="approved_request.do?method=listAllApprovedRequestOfUser&selection=Approvedrequest"><i
+								class="fa fa-gift fa-fw"></i> Apporved Request</a></li>
+						<li><a href="#"><i class="fa fa-history fa-fw"></i>History
+								<span class="fa arrow"></span></a>
+
+							<ul class="nav nav-third-level">
+								<li><a id="leavehistory"
+									href="history_user.do?method=listAllLeaveRequestByUserId&selection=leavehistory">Leaves</a></li>
+								<li><a id="workfromhomehistory"
+									href="history_user.do?method=listAllWorkFromHomeRequestByUserId&selection=workfromhomehistory">Work
+										from home</a></li>
+
+
+								<li><a id="bankholidayworkinghistory"
+									href="history_user.do?method=listAllBankHolidayWorkingRequestByUserId&selection=bankholidayworkinghistory">Bank
+										holiday working</a></li>
+
+								<li><a id="weekendworkinghistory"
+									href="history_user.do?method=listAllWeekendWorkingRequestByUserId&selection=weekendworkingworkinghistory">
+										WeekendWorking</a></li>
+
+							</ul> <!-- /.nav-second-level --></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+				<li><a href="#"><i class="fa fa-inbox fa-fw"></i> For
+						Approval <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" id="forApproval">
+
+						<li><a id="cancellationRequests"
+							href="approved_cancellation.do?method=listRequestsForApproval"><i
+								class="fa fa-inbox fa-fw"></i>Cancellation Requests</a></li>
+
+						<li><a id="leaveRequest"
+							href="for_approval.do?method=listRequestsForApproval&selection=forapproval"><i
+								class="fa fa-inbox fa-fw"></i>Leave Requests</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#"><i class="fa fa-star fa-fw"></i> Skill Matrix<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" id="skillMatrix">
+
+						<li><a id="searchSkills"
+							href="skillset.do?method=searchSkills&selection=searchSkills"><i
+								class="fa fa-inbox fa-fw"></i>Search Skills</a></li>
+
+						<li><a id="listskills"
+							href="skillset.do?method=loadUserSkills&selection=listskills"><i
+								class="fa fa-star fa-fw"></i> Skill Matrix</a></li>
+					</ul>
+				</li>
+
+				<li><a id="declarationform"
+					href="declarationform.do?method=populateDeclarationForm&selection=declarationform"><i
+						class="fa fa-inr"></i> Investment Declaration</a></li>
+
+			</sec:authorize>
+
+
+			<!-- -------------------USER navbar-------------------- -->
+			<sec:authorize ifAllGranted="ROLE_USER">
+				<li><a href="#"><i class="fa fa-envelope fa-fw"></i> Leave
+						Management<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" id="historyMgmt">
+						<li><a id="newrequest"
+							href="applyleave_user.do?method=listAllRequestsOfLastTwoYearsByUserId&selection=newrequest"><i
+								class="fa fa-envelope fa-fw"></i> New Request</a></li>
+						<li><a id="pendingrequest"
+							href="pending_request.do?method=listAllPendingRequestOfUser&selection=pendingrequest"><i
+								class="fa fa-tasks fa-fw"></i> Pending Request</a></li>
+						<li><a id="bankholidayworking"
+							href="bankHolidayRequest.do?method=listAllRequestsOfLastTwoYearsByUserId&selection=bankholidayworking"><i
+								class="fa fa-tasks fa-fw"></i> Bank Holiday Working Request</a></li>
+						<li><a id="approvedrequest"
+							href="approved_request.do?method=listAllApprovedRequestOfUser"><i
+								class="fa fa-gift fa-fw"></i> Apporved Request</a></li>
+						<li><a href="#"><i class="fa fa-history fa-fw"></i>
+								History<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level" id="historyMgmt">
+								<li><a id="leavehistory"
+									href="history_user.do?method=listAllLeaveRequestByUserId&selection=leavehistory">Leaves</a></li>
+								<li><a id="workfromhomehistory"
+									href="history_user.do?method=listAllWorkFromHomeRequestByUserId&selection=workfromhomehistory">Work
+										from home</a></li>
+								<li><a id="weekendworkinghistory"
+									href="history_user.do?method=listAllWeekendWorkingRequestByUserId&selection=weekendworkinghistory">Weekend
+										Working </a></li>
+								<li><a id="bankholidayworkinghistory"
+									href="history_user.do?method=listAllBankHolidayWorkingRequestByUserId&selection=bankholidayworkinghistory">Bank
+										holiday working</a></li>
+
+							</ul> <!-- /.nav-second-level --></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+
+
+
+				<li><a id="attendance"
+					href="user_attendance.do?method=listAttendance&selection=attendance"><i
+						class="fa fa-sign-in"></i>&nbsp;<i class="fa fa-sign-out"></i> Swipe In/Out</a></li>
+
+
+
+				<li><a id="listskills"
+					href="skillset.do?method=loadUserSkills&selection=listskills"><i
+						class="fa fa-star fa-fw"></i> Skill Matrix</a></li>
+
+				<li><a id="declarationform"
+					href="declarationform.do?method=populateDeclarationForm&selection=declarationform"><i
+						class="fa fa-inr"></i> Investment Declaration</a></li>
+
+
+
+
+
+			</sec:authorize>
+			<!-- /.sidebar-collapse -->
+
+		</ul>
+	</div>
+	<!-- /sidebar-nav navbar-collapse -->
+</div>
+
+
+
+
+

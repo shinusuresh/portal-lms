@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<!-- This is the Struts configuration file for the example application, using 
+	the proposed new syntax. -->
+
+
+<struts-config>
+
+	<!-- ========== Form Bean Definitions =================================== -->
+	<form-beans>
+	 <form-bean name="uploadForm" type="org.springframework.web.struts.SpringBindingActionForm"/>
+	</form-beans>
+
+
+	<!-- ========== Global Forward Definitions ============================== -->
+	<global-forwards>
+		<forward name="logoff" path="/logoff.do" />
+		<forward name="logon" path="/logon.jsp" />
+		<forward name="success" path="/WEB-INF/jsp/admin/dashboard/dashboard.jsp" />
+		<forward name="dashboard" path="/admin/dashboard.jsp" />
+
+	</global-forwards>
+
+
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+
+		<!-- Process a user logon -->
+		<action path="/logon"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<exception key="expired.password"
+				type="org.apache.struts.webapp.example.ExpiredPasswordException"
+				path="/changePassword.jsp" />
+			<forward name="success" path="/WEB-INF/jsp/admin/dashboard/dashboard.jsp"></forward>
+		</action>
+
+		<!-- General admin holiday action -->
+		<!-- Process a user logon -->
+
+		<action path="/useractions" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/addnewuser.jsp"></forward>
+			<forward name="activation" path="/WEB-INF/jsp/common/login/login.jsp" />
+		</action>
+		<!-- Adding holidays to db -->
+		<action path="/inputHoliday" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/addholiday.jsp"></forward>
+		</action>
+
+		<!-- Reset password -->
+		<action path="/resetPassword" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/profile.jsp"></forward>
+		</action>
+
+		<!-- Add holidays -->
+		<action path="/addCalendarHoliday" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/addholiday.jsp"></forward>
+		</action>
+
+		<!-- Apply leave admin -->
+		<action path="/applyleave" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/applyleave.jsp" />
+		</action>
+
+		<!-- Apply leave user -->
+		<action path="/applyleave_user" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/applyleave.jsp" />
+		</action>
+
+		<!-- Add new request by user -->
+		<action path="/newrequest" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/applyleave.jsp" />
+		</action>
+		<!-- New bank holiday working request by user to process -->
+		<action path="/bankHolidayRequest" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/bankHolidayRequest.jsp" />
+		</action>
+		<!-- Bank holiday request by user -->
+		<action path="/newBankHolidayRequest" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/bankHolidayRequest.jsp" />
+		</action>
+
+		<!-- List pending request to user with manager role -->
+		<action path="/for_approval" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/for_approval.jsp"></forward>
+		</action>
+		<action path="/approved_cancellation" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/approved_cancellation.jsp"></forward>
+		</action>
+
+		<!-- Login -->
+		<action path="/login" forward="/WEB-INF/jsp/common/login/login.jsp" />
+		<!-- Dashboard -->
+		<action path="/userDashboardActions" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/shared/dashboard/dashboard.jsp"></forward>
+			<forward name="forgotPasswordSuccess" path="/WEB-INF/jsp/common/login/login.jsp"></forward>
+		</action>
+
+		<!-- 405 -->
+		<action path="/403" forward="/WEB-INF/jsp/common/error/403.jsp" />
+
+
+		<!-- detailed log by admin -->
+		<action path="/detailed_log" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/detailed_log.jsp"></forward>
+		</action>
+
+		<!-- Pending Leave Request -->
+		<action path="/pending_request" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/pending_request.jsp"></forward>
+		</action>
+		<!-- Pending Request for user -->
+		<action path="/for_approval" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/for_approval.jsp"></forward>
+		</action>
+
+		<!-- Approved Request -->
+
+		<action path="/approved_request" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/approved_request.jsp"></forward>
+		</action>
+
+
+
+		<!-- History -->
+		<action path="/history_user" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="leave"
+				path="/WEB-INF/jsp/user/task/history/leave_request.jsp" />
+			<forward name="workfromhome"
+				path="/WEB-INF/jsp/user/task/history/work_from_home_request.jsp" />
+			<forward name="bankholidayworking"
+				path="/WEB-INF/jsp/user/task/history/bank_holiday_working_request.jsp" />
+			<forward name="weekendworking"
+				path="/WEB-INF/jsp/user/task/history/weekend_working_request.jsp" />
+		</action>
+
+		<!-- User Profile -->
+		<action path="/profile" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/profile.jsp"></forward>
+		</action>
+
+		<!-- view calendar holidays -->
+		<action path="/viewCalendarHolidays" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/shared/dashboard/dashboard.jsp"></forward>
+		</action>
+
+		<!-- Accept/Reject request -->
+		<action path="/requestProcess" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/for_approval.jsp"></forward>
+			<forward name="cancelledByUser" path="/WEB-INF/jsp/user/task/pending_request.jsp"></forward>
+		</action>
+
+		<!-- Approved request to user -->
+		<action path="/approved_request" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/approved_request.jsp"></forward>
+		</action>
+
+		<!-- Update user profile -->
+		<action path="/update_profile" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/profile.jsp"></forward>
+		</action>
+
+		<!-- Request for leave cancellation -->
+		<action path="/cancelRequest" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/user/task/approved_request.jsp"></forward>
+			<forward name="newRequest" path="/WEB-INF/jsp/user/task/applyleave.jsp"></forward>
+
+		</action>
+
+		<action path="/cancelRequestProcess" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/common/approved_cancellation.jsp"></forward>
+		</action>
+
+		<action path="/employeelist" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/employeelist.jsp"></forward>
+		</action>
+
+		<!-- To populate User details to admin -->
+		<action path="/editUserProfile" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/edit_user.jsp"></forward>
+		</action>
+
+		<action path="/edit_user" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/edit_user.jsp"></forward>
+		</action>
+
+		<!-- Skillset actions -->
+		<action path="/skillset" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="newskills" path="/WEB-INF/jsp/admin/tasks/addupdateskills.jsp"></forward>
+			<forward name="listskills" path="/WEB-INF/jsp/admin/tasks/listskills.jsp"></forward>
+			<forward name="userskills" path="/WEB-INF/jsp/user/task/skills.jsp"></forward>
+			<forward name="searchskills" path="/WEB-INF/jsp/admin/tasks/search_employee_skills.jsp"></forward>			
+		</action>
+		<!-- add user leave by admin -->
+		<action path="/addleave" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/applyleave.jsp"></forward>
+		</action>
+
+		<!-- List escalated requests to admin -->
+		<action path="/escalated_requests" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/admin/tasks/escalated_request.jsp"></forward>
+		</action>
+
+		<!-- Accept/Reject request -->
+		<action path="/requestProcessUser" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="cancelledByUser" path="/WEB-INF/jsp/user/task/pending_request.jsp"></forward>
+		</action>
+
+		<!-- user holidays for admin -->
+		<action path="/user_holidays" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/WEB-INF/jsp/admin/tasks/history.jsp"></forward>
+		</action>
+
+		<action path="/declarationform" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/investmentDeclaration/declaration.jsp"></forward>
+		</action>
+
+
+		<action path="/user_attendance" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/user/attendance/user_attendance.jsp"></forward>
+		</action>
+
+
+		<action path="/InvestmentDeclarationAction" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/investmentDeclaration/declaration.jsp"></forward>
+		</action>
+
+		<action path="/ConvertToPDF" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/investmentDeclaration/declaration.jsp"></forward>
+		</action>
+
+
+		<action path="/user_attendance" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/user/attendance/user_attendance.jsp"></forward>
+		</action>
+
+
+		<action path="/monthlyLeaves" parameter="method"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/WEB-INF/jsp/admin/tasks/search_employee.jsp"></forward>
+		</action>
+
+		 <action path="/fileUpload" parameter="method" name="uploadForm" input="/WEB-INF/jsp/admin/tasks/uploadattendance.jsp"
+        		type="org.springframework.web.struts.DelegatingActionProxy" scope="request" validate="true">
+            	<forward name="success" path="/WEB-INF/jsp/admin/tasks/uploadattendance.jsp"/>
+        </action>
+	</action-mappings>
+
+
+	<!-- ========== Controller Configuration ================================ -->
+
+	<controller>
+		<!-- The "input" parameter on "action" elements is the name of a local 
+			or global "forward" rather than a module-relative path -->
+		<set-property property="inputForward" value="true" />
+	</controller>
+
+
+	<!-- ========== Message Resources Definitions =========================== -->
+
+	<message-resources parameter="ApplicationResources" />
+
+	<message-resources parameter="AlternateApplicationResources"
+		key="alternate">
+	</message-resources>
+
+
+	<!-- ========== Plug Ins Configuration ================================== -->
+
+	<plug-in className="org.apache.struts.plugins.ModuleConfigVerifier" />
+
+	<!-- Spring Struts plugin <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn"> 
+		<set-property property="contextConfigLocation" value="/WEB-INF/classes/spring/xml/applicationContext.xml" 
+		/> </plug-in> -->
+
+</struts-config>

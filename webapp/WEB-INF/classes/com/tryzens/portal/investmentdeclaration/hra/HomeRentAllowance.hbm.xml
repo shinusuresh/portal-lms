@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tryzens.portal.investmentdeclaration.hra.HomeRentAllowance"
+		table="HRA" catalog="tryzens_portal" lazy="false">
+
+		<id name="id" type="long">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="name_of_landlord" type="string">
+			<column name="name_of_landlord"/>
+		</property>
+		<property name="address_of_landlord" type="string">
+			<column name="address_of_landlord"/>
+		</property>
+		<property name="address_of_accomodation" type="string">
+			<column name="address_of_accomodation"/>
+		</property>
+		<property name="rent_amount_per_month" type="big_decimal">
+			<column name="rent_amount_per_month"/>
+		</property>
+		<property name="rent_amount_per_annum" type="big_decimal">
+			<column name="rent_amount_per_annum"/>
+		</property>
+		<property name="year" type="int">
+			<column name="year"/>
+		</property>
+		<many-to-one name="user" column="USER_ID"
+			class="com.tryzens.portal.user.User" embed-xml="false" not-null="false" />
+	</class>
+</hibernate-mapping>

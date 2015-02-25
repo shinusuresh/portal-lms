@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="portal-lms sonar review" default="build-and-deploy" basedir="." xmlns:sonar="antlib:org.sonar.ant">
+
+	<!-- ========= Define the main properties of this project ========= -->
+	<!-- IMPORTANT - SET tomcat.home SET TO APACHE TOMCAT 6 HOME. This is needed for compile target -->
+	
+	<property name="build.dir" value="target" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="testlibs.dir" value="testlibs" />
+	
+
+
+	<property file="build.properties" />
+
+	<property name="war-file-name" value="${project-name}.war" />
+	<property name="source-directory" value="src" />	
+	<property name="web-directory" value="webapp" />
+	<property name="web-xml-file" value="webapp/WEB-INF/web.xml" />
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+		<format property="year-month-day" pattern="yyyy-MM-dd" locale="en" />
+	</tstamp>
+	<property name="build-directory" value="build" />
+
+	<property name="ftp-remotedir" value="uploaded-wars/${project-name}/${build-info.year-month-day}" />
+	
+	
+
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask">
+		<classpath path="testlibs/catalina-ant.jar"></classpath>
+	</taskdef>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask">
+		<classpath path="testlibs/catalina-ant.jar"></classpath>
+	</taskdef>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask">
+		<classpath path="testlibs/catalina-ant.jar"></classpath>
+	</taskdef>
+	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask">
+		<classpath path="testlibs/catalina-ant.jar"></classpath>
+	</taskdef>
+
+	<!-- Define the Sonar properties -->
+	<property name="sonar.projectKey" value="com.tryzens.portal:portal-lms" />
+	<property name="sonar.projectName" value="Tryzens Portal LMS" />
+	<property name="sonar.projectVersion" value="1.0" />
+	<property name="sonar.language" value="java" />
+	<property name="sonar.sources" value="src" />
+	<property name="sonar.binaries" value="target" />
+	<property name="sonar.sourceEncoding" value="UTF-8" />
+
+	<!-- Add your basic Sonar configuration below: sonar.jdbc.url, sonar.jdbc.username, etc. properties -->
+
+	<property name="sonar.jdbc.url" value="jdbc:h2:tcp://localhost:9092/sonar" />
+	<property name="sonar.jdbc.username" value="sonar" />
+	<property name="sonar.jdbc.password" value="sonar" />
+	
+	<path id="src.java.path">
+		<pathelement location="src/java"/>
+		<pathelement location="src/jobs"/>		
+	</path>
+	
+	<path id="build.class.path">
+        <fileset dir="${web-directory}/WEB-INF/lib/">
+            <include name="**/*.jar" />
+        </fileset>		
+		<fileset dir="${tomcat.home}/lib">
+			 <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+	<!-- ========= Define "regular" targets: clean, compile, ... ========= -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac destdir="${classes.dir}" fork="true" debug="true" includeAntRuntime="false">
+			<src refid="src.java.path"></src>
+			<classpath refid="build.class.path"></classpath>
+		</javac>
+	</target>
+
+	<!-- ========= Define Sonar target ========= -->
+	<target name="sonar">
+		<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+			<!-- Update the following line, or put the "sonar-ant-task-*.jar" file in your "$HOME/.ant/lib" folder -->
+			<classpath path="testlibs/sonar-ant-task-2.2.jar" />
+		</taskdef>
+
+		<!-- Execute Sonar -->
+		<sonar:sonar />
+	</target>
+
+	<target name="stop" description="stop application in tomcat">
+		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+				password="${tomcat-manager-password}" path="/${project-name}" />
+	</target>
+
+	<target name="start" description="start application in tomcat">
+		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+				password="${tomcat-manager-password}" path="/${project-name}" />
+	</target>
+
+	<target name="undeploy" description="undeploy from tomcat">
+		<undeploy 
+				failonerror="no"
+				url="${tomcat-manager-url}"
+				username="${tomcat-manager-username}"
+				password="${tomcat-manager-password}"
+				path="/${project-name}"
+			/>
+	</target>
+
+	<target name="deploy" description="deploy to tomcat">
+		<echo message="Deploying war ${war-file-name}"></echo>
+		<deploy 
+				url="${tomcat-manager-url}"
+				username="${tomcat-manager-username}"
+				password="${tomcat-manager-password}"
+				path="/${project-name}"
+				war="${BUILD_PATH}/${build-directory}/${war-file-name}"
+			/>
+	</target>
+
+	<target name="war" depends="compile">
+		<mkdir dir="${BUILD_PATH}/${build-directory}" />
+		<delete file="${BUILD_PATH}/${build-directory}/${war-file-name}" />
+		<war warfile="${BUILD_PATH}/${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+			<classes dir="${classes.dir}" />
+			<classes dir="src/config" />
+			<classes dir="src/java/dao" includes="**/*.hbm.xml" />
+				
+			<fileset dir="${web-directory}">
+				<!-- Need to exclude it since webxml is an attribute of the war tag above -->
+				<exclude name="WEB-INF/web.xml" />
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${builder}" />
+				<attribute name="Built-On" value="${build-info.current-date}" />
+				<attribute name="Built-At" value="${build-info.current-time}" />
+			</manifest>
+		</war>
+	</target>
+
+	<target name="ftp" depends="" description="upload war file to server">
+		<ftp 
+				server="${ftp-server}" remotedir="${ftp-remotedir}"
+				userid="${ftp-userid}" password="${ftp-password}"
+				action="mkdir" verbose="yes">
+		</ftp>
+		<ftp 
+				server="${ftp-server}" remotedir="${ftp-remotedir}"
+				userid="${ftp-userid}" password="${ftp-password}"
+				action="send" verbose="yes" depends="yes">
+			<fileset file="${build-directory}/${war-file-name}" />
+		</ftp>
+	</target>
+
+
+
+
+	<!-- ========= The main target "all" ========= -->
+	<target name="review" depends="clean,init,sonar" />
+
+	<target name="build-and-ftp" depends="war,ftp" />
+	<target name="build-and-deploy" depends="war,undeploy,deploy" />
+
+</project>

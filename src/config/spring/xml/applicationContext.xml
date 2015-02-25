@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" profile="development,default">
+
+	<!-- Common configuration properties -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		name="applicationProps">
+		<property name="locations">
+			<list>
+				<value>classpath:/spring/properties/database.properties</value>
+				<value>classpath:/spring/properties/configuration.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- Database Configuration -->
+	<import resource="dataSource.xml" />
+	<import resource="hibernateSessionFactory.xml" />
+
+	<!-- URL Security -->
+	<import resource="security.xml" />
+
+	<!-- Beans Declaration -->
+	<import resource="daoBeans.xml" />
+	<import resource="businessBeans.xml" />
+	<import resource="actionBeans.xml" />
+	<import resource="emailBeans.xml" />
+	<import resource="jobsBeans.xml" />
+	<import resource="metricsBeans.xml" />
+
+	<!-- Bean to set details to jsp page -->
+	<bean id="listDetails" class="com.tryzens.portal.lms.common.details.ListDetails">
+		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="managerServices" ref="managerServices"></property>
+		<property name="userServices" ref="userServices"></property>
+		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
+		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
+		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
+		<property name="weekendWorkingDao" ref="weekendWorkingDao"></property>
+		<property name="skillsDao" ref="skillsDao"></property>
+		<property name="roleDao" ref="roleDao"></property>
+
+	</bean>
+
+	<bean id="listRequests" class="com.tryzens.portal.lms.common.details.ListRequests">
+		<property name="userDao" ref="userDao"></property>
+		<property name="managerServices" ref="managerServices"></property>
+		<property name="listDetails" ref="listDetails"></property>
+		<property name="adminServices" ref="adminServices"></property>
+		<property name="roleDao" ref="roleDao"></property>
+	</bean>
+
+
+</beans>

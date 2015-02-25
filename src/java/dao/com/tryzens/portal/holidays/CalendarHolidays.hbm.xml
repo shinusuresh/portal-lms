@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tryzens.portal.holidays.CalendarHolidays" table="Calendar_holidays"
+		catalog="tryzens_portal">
+		<id name="id" type="long">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="date" type="date">
+			<column name="DATE" length="20" not-null="true" />
+		</property>
+		<property name="holidayType" type="string">
+			<column name="HOLIDAY_TYPE" length="40" not-null="true" />
+		</property>
+		<property name="description" type="string">
+			<column name="DESCRIPTION" length="70" />
+		</property>
+		<property name="year" type="int">
+			<column name="Year" />
+		</property>
+	</class>
+</hibernate-mapping>
