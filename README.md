@@ -11,13 +11,13 @@
 # Sample Login data
 
 Admin Role
-admin@admin.com/admin
+admin@localhost.com/admin
 
 Manager Role
-manager@admin.com/manager
+manager@localhost.com/manager
 
 User Role
-user@admin.com/user
+user@localhost.com/user
 
 # Frameworks and api's used
 
