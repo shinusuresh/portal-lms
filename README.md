@@ -35,3 +35,9 @@ user@localhost.com/user
 
 # Application Architecture
 ![Portal Architecture](docs/portal-architecture.png)
+
+# Reference - Sequence diagram for add new user (Struts Action controller flow)
+![Add new user sequence diagram](docs/portal-architecture.png)
+
+# Reference - Sequence diagram for adding new skill (Spring Controller Ajax flow)
+![Add skill sequence diagram](docs/add-new-skill-ajax-sequence.png)
