@@ -19,7 +19,7 @@ manager@localhost.com/manager
 User Role
 user@localhost.com/user
 
-# Frameworks and api's used
+# Technology Stack
 
 | Framework | Version |
 | -------- | -------- |
@@ -33,3 +33,5 @@ user@localhost.com/user
 | PDF Box | 1.8.7 |
 | Apache POI | 3.10.1 |
 
+# Application Architecture
+![Portal Architecture](docs/portal-architecture.png)

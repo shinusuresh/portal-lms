@@ -20,7 +20,7 @@ public class XlsParserTest {
 		AttendanceServiceImpl attendanceService = new AttendanceServiceImpl();
 		AttendanceParser parser = new XlsAttendanceParser();
 	List<Attendance> attendances=parser.parseAttendance(new File("C:/attendance/archive/attendance test1.xls"));
-	attendanceService.print();
+	//attendanceService.print();
 	//if(attendances.isEmpty())
 //	attendanceService.saveAttendances(attendances);
 	}
