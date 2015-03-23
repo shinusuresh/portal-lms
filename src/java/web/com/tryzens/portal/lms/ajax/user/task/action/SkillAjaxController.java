@@ -1,10 +1,8 @@
 package com.tryzens.portal.lms.ajax.user.task.action;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,18 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ibm.icu.text.SimpleDateFormat;
 import com.tryzens.portal.lms.user.task.UserServices;
 import com.tryzens.portal.login.service.PortalUserDetails;
 import com.tryzens.portal.user.User;
 import com.tryzens.portal.user.dao.UserDao;
-import com.tryzens.portal.user.request.bankholidayworking.BankHolidayWorking;
 import com.tryzens.portal.user.request.bankholidayworking.dao.BankHolidayWorkingDao;
-import com.tryzens.portal.user.request.leaverequest.LeaveRequest;
 import com.tryzens.portal.user.request.leaverequest.dao.LeaveRequestDao;
-import com.tryzens.portal.user.request.weekendworking.WeekendWorking;
 import com.tryzens.portal.user.request.weekendworking.dao.WeekendWorkingDao;
-import com.tryzens.portal.user.request.workfromhome.WorkFromHome;
 import com.tryzens.portal.user.skills.Skill;
 import com.tryzens.portal.user.skills.UserSkills;
 import com.tryzens.portal.user.skills.dao.SkillsDao;
