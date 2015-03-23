@@ -51,7 +51,7 @@
 		<security:logout delete-cookies="JSESSIONID" />
 
 		<!-- Remeber me -->
-		<security:remember-me key="$Tryzens123" />
+		<security:remember-me key="$ThoughtService123" />
 		
 		<!-- Session management -->
 		<security:session-management>
@@ -65,7 +65,7 @@
 		id="passwordEncoder" />
 
 	<!-- Custom Portal UserDetails  -->
-	<bean class="com.tryzens.portal.login.service.PortalUserDetailsService" id="portalUserDetails">
+	<bean class="com.thoughtservice.portal.login.service.PortalUserDetailsService" id="portalUserDetails">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	

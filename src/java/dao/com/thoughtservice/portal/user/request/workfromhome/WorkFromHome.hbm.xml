@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.thoughtservice.portal.user.request.workfromhome.WorkFromHome"
+		table="WORK_FROM_HOME" catalog="thoughtservice_portal" lazy="false">
+		<id name="id" type="long">
+			<column name="REQUEST_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="startDate" type="date">
+			<column name="START_DATE" not-null="false" />
+		</property>
+		<property name="days" type="int">
+			<column name="DAYS" not-null="false" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="END_DATE" not-null="false" />
+		</property>
+		<property name="requestDate" type="date">
+			<column name="REQUEST_DATE" not-null="false" />
+		</property>
+		<property name="year" type="int">
+			<column name="YEAR" not-null="false" />
+		</property>
+		<property name="status" type="string">
+			<column name="STATUS" not-null="false" length="70" />
+		</property>
+		<property name="markedBy" type="string">
+			<column name="MARKED_BY" not-null="false" length="70" />
+		</property>
+		<property name="hdFd" type="string">
+			<column name="HD_FD" not-null="false" length="70" default="null" />
+		</property>
+		<property name="description" type="string">
+			<column name="DESCRIPTION" not-null="false" length="70" />
+		</property>
+		<property name="isVerified" type="string">
+			<column name="IS_VERIFIED" not-null="false" length="79" />
+		</property>
+		<property name="lastUpdate" type="timestamp">
+			<column name="LASTUPDATE_DATE" length="19" />
+		</property>
+		<property name="lmsInternal" type="string">
+			<column name="LMS_INTERNAL" />
+		</property>
+		<property name="approversComment" type="string">
+			<column name="APPROVERS_COMMENT" />
+		</property>
+		<property name="typeOfRequest" type="string">
+			<column name="typeOfRequest" not-null="false" length="70"
+				default="null" />
+		</property>
+
+		<many-to-one name="user" column="USER_ID"
+			class="com.thoughtservice.portal.user.User" embed-xml="false" not-null="false" />
+		<many-to-one name="approver" column="APPROVER_ID"
+			class="com.thoughtservice.portal.user.User" embed-xml="false" not-null="false" />
+	</class>
+</hibernate-mapping>

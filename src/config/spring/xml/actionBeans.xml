@@ -4,26 +4,26 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean name="/useractions" class="com.tryzens.portal.lms.admin.task.action.UserActions">
+	<bean name="/useractions" class="com.thoughtservice.portal.lms.admin.task.action.UserActions">
 		<property name="userDao" ref="userDao"></property>
 		<property name="roleDao" ref="roleDao"></property>
 		<property name="adminServices" ref="adminServices"></property>
 	</bean>
 
 	<bean name="/resetPassword"
-		class="com.tryzens.portal.lms.common.resetpassword.ResetPassword">
+		class="com.thoughtservice.portal.lms.common.resetpassword.ResetPassword">
 		<property name="userDao" ref="userDao"></property>
 		<property name="passwordEncoder" ref="passwordEncoder"></property>
 	</bean>
 
 	<bean name="/inputHoliday"
-		class="com.tryzens.portal.lms.admin.task.action.CalendarHolidaysAction">
+		class="com.thoughtservice.portal.lms.admin.task.action.CalendarHolidaysAction">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="listDetails" ref="listDetails"></property>
 	</bean>
 
 	<!-- Add holidays -->
-	<bean name="/addCalendarHoliday" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/addCalendarHoliday" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="managerServices" ref="managerServices"></property>
@@ -32,7 +32,7 @@
 
 
 	<!-- history user -->
-	<bean name="/history_user" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/history_user" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userDao" ref="userDao" />
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao" />
 		<property name="leaveRequestDao" ref="leaveRequestDao" />
@@ -42,13 +42,13 @@
 	</bean>
 
 	<!-- Apply leave by admin -->
-	<bean name="/applyleave" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/applyleave" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 
 	<!-- Apply leave by user -->
-	<bean name="/applyleave_user" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/applyleave_user" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
@@ -61,7 +61,7 @@
 
 	<!--work from home -->
 	<bean name="/newrequest"
-		class="com.tryzens.portal.lms.user.task.action.leave.AddNewLeaveRequest">
+		class="com.thoughtservice.portal.lms.user.task.action.leave.AddNewLeaveRequest">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -75,7 +75,7 @@
 	</bean>
 	<!-- dash board -->
 
-	<bean name="/dashboard" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/dashboard" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="managerServices" ref="managerServices"></property>
@@ -87,13 +87,13 @@
 		<property name="weekendWorkingDao" ref="weekendWorkingDao"></property>
 	</bean>
 
-	<!-- <bean id="sendmail" class="com.tryzens.portal.lms.mail.MailAPI"> <property 
+	<!-- <bean id="sendmail" class="com.thoughtservice.portal.lms.mail.MailAPI"> <property 
 		name="mailSender" ref="mailSender" /> <property name="mailconfig" ref="mailconfig" 
 		/> </bean> -->
 
 
 
-	<bean name="/for_approval" class="com.tryzens.portal.lms.common.details.ListRequests">
+	<bean name="/for_approval" class="com.thoughtservice.portal.lms.common.details.ListRequests">
 		<property name="userDao" ref="userDao"></property>
 		<property name="managerServices" ref="managerServices"></property>
 		<property name="listDetails" ref="listDetails"></property>
@@ -102,7 +102,7 @@
 	</bean>
 
 
-	<bean name="/approved_cancellation" class="com.tryzens.portal.lms.common.details.ListRequests">
+	<bean name="/approved_cancellation" class="com.thoughtservice.portal.lms.common.details.ListRequests">
 		<property name="userDao" ref="userDao"></property>
 		<property name="managerServices" ref="managerServices"></property>
 		<property name="listDetails" ref="listDetails"></property>
@@ -111,7 +111,7 @@
 	</bean>
 
 	<!--New bank holiday working request by user to process -->
-	<bean name="/bankHolidayRequest" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/bankHolidayRequest" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userServices" ref="userServices"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -123,7 +123,7 @@
 	</bean>
 	<!-- bank holiday request -->
 	<bean name="/newBankHolidayRequest"
-		class="com.tryzens.portal.lms.user.task.action.bankholidayworking.AddNewBankHolidayWorkingRequest">
+		class="com.thoughtservice.portal.lms.user.task.action.bankholidayworking.AddNewBankHolidayWorkingRequest">
 		<property name="userServices" ref="userServices"></property>
 		<property name="listDetails" ref="listDetails"></property>
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
@@ -131,7 +131,7 @@
 	</bean>
 
 	<!--Accept/ Reject a request by manager -->
-	<bean name="/requestProcess" class="com.tryzens.portal.lms.processrequest.ProcessRequest">
+	<bean name="/requestProcess" class="com.thoughtservice.portal.lms.processrequest.ProcessRequest">
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
 		<property name="listDetails" ref="listDetails"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -141,11 +141,11 @@
 	</bean>
 
 	<!-- view calendar holidays -->
-	<bean name="/viewCalendarHolidays" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/viewCalendarHolidays" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="calendarHolidaysDao" ref="calendarHolidaysDao"></property>
 	</bean>
 
-	<bean name="/detailed_log" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/detailed_log" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userServices" ref="userServices"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -156,7 +156,7 @@
 		<property name="adminServices" ref="adminServices"></property>
 	</bean>
 	<!-- Pending Request for user -->
-	<bean name="/pending_request" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/pending_request" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userServices" ref="userServices"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -169,20 +169,20 @@
 	</bean>
 
 	<!-- user holidays for admin -->
-	<bean name="/user_holidays" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/user_holidays" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userHolidaysDao" ref="userHolidaysDao"></property>
 	</bean>
 
 	<!-- cancel request -->
 	<bean name="/cancelRequest"
-		class="com.tryzens.portal.lms.user.task.action.LeaveCancellationRequest">
+		class="com.thoughtservice.portal.lms.user.task.action.LeaveCancellationRequest">
 		<property name="listDetails" ref="listDetails"></property>
 		<property name="userServices" ref="userServices"></property>
 	</bean>
 
 	<!-- forgot password -->
 	<bean name="/userDashboardActions"
-		class="com.tryzens.portal.lms.user.task.action.UserDashboardActions">
+		class="com.thoughtservice.portal.lms.user.task.action.UserDashboardActions">
 		<property name="userServices" ref="userServices"></property>
 		<property name="userDao" ref="userDao"></property>
 		<property name="calculateLeaves" ref="calculateLeaves"></property>
@@ -192,7 +192,7 @@
 
 
 	<!-- update user profile -->
-	<bean name="/profile" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/profile" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="userServices" ref="userServices"></property>
 		<property name="experienceDao" ref="experienceDao"></property>
 	</bean>
@@ -200,7 +200,7 @@
 
 
 	<bean name="/cancelRequestProcess"
-		class="com.tryzens.portal.lms.processrequest.ProcessCancelRequest">
+		class="com.thoughtservice.portal.lms.processrequest.ProcessCancelRequest">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
@@ -210,13 +210,13 @@
 	</bean>
 
 
-	<bean name="/edit_user" class="com.tryzens.portal.lms.admin.task.action.UserActions">
+	<bean name="/edit_user" class="com.thoughtservice.portal.lms.admin.task.action.UserActions">
 		<property name="userServices" ref="userServices"></property>
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 
 	<!-- Add user leave by admin -->
-	<bean name="/addleave" class="com.tryzens.portal.lms.admin.task.action.MarkLeave">
+	<bean name="/addleave" class="com.thoughtservice.portal.lms.admin.task.action.MarkLeave">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
 		<property name="userDao" ref="userDao"></property>
@@ -226,18 +226,18 @@
 	</bean>
 
 
-	<bean name="/employeelist" class="com.tryzens.portal.lms.admin.task.action.UserActions">
+	<bean name="/employeelist" class="com.thoughtservice.portal.lms.admin.task.action.UserActions">
 		<property name="userDao" ref="userDao"></property>
 		<property name="roleDao" ref="roleDao"></property>
 	</bean>
 
-	<bean name="/editUserProfile" class="com.tryzens.portal.lms.admin.task.action.UserActions">
+	<bean name="/editUserProfile" class="com.thoughtservice.portal.lms.admin.task.action.UserActions">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 
 
 	<!-- approved requests to user -->
-	<bean name="/approved_request" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/approved_request" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
@@ -250,14 +250,14 @@
 
 	<!-- Skill actions -->
 	<bean name="/skillset"
-		class="com.tryzens.portal.lms.admin.task.action.SkillsActions">
+		class="com.thoughtservice.portal.lms.admin.task.action.SkillsActions">
 		<property name="userDao" ref="userDao"></property>
 		<property name="skillsDao" ref="skillsDao"></property>
 		<property name="adminServices" ref="adminServices"></property>
 	</bean>
 
 	<!-- List escalated requests to admin -->
-	<bean name="/escalated_requests" class="com.tryzens.portal.lms.common.details.ListRequests">
+	<bean name="/escalated_requests" class="com.thoughtservice.portal.lms.common.details.ListRequests">
 		<property name="userDao" ref="userDao"></property>
 		<property name="managerServices" ref="managerServices"></property>
 		<property name="listDetails" ref="listDetails"></property>
@@ -266,7 +266,7 @@
 	</bean>
 
 	<!--Accept/ Reject a request by manager -->
-	<bean name="/requestProcessUser" class="com.tryzens.portal.lms.processrequest.ProcessRequest">
+	<bean name="/requestProcessUser" class="com.thoughtservice.portal.lms.processrequest.ProcessRequest">
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
 		<property name="listDetails" ref="listDetails"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -276,12 +276,12 @@
 	</bean>
 
 	<bean name="/declarationform"
-		class="com.tryzens.portal.lms.investmentdeclaration.InvestmentDeclarationAction">
+		class="com.thoughtservice.portal.lms.investmentdeclaration.InvestmentDeclarationAction">
 		<property name="userDao" ref="userDao"></property>
 		<property name="investmentDeclarationDao" ref="investmentDeclarationDao"></property>
 	</bean>
 	<!-- attendance to user -->
-	<bean name="/user_attendance" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/user_attendance" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
@@ -294,25 +294,25 @@
 	</bean>
 
 	<bean name="/ConvertToPDF"
-		class="com.tryzens.portal.lms.investmentdeclaration.pdf.controller.ConvertToPDF">
+		class="com.thoughtservice.portal.lms.investmentdeclaration.pdf.controller.ConvertToPDF">
 		<property name="userDao" ref="userDao"></property>
 		<property name="investmentDeclarationDao" ref="investmentDeclarationDao"></property>
 	</bean>
 	
 	<bean name="/searchskills"
-		class="com.tryzens.portal.lms.investmentdeclaration.pdf.controller.ConvertToPDF">
+		class="com.thoughtservice.portal.lms.investmentdeclaration.pdf.controller.ConvertToPDF">
 		<property name="investmentDeclarationDao" ref="investmentDeclarationDao"></property>
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
 	<bean name="/update_profile"
-		class="com.tryzens.portal.lms.user.task.action.UserDashboardActions">
+		class="com.thoughtservice.portal.lms.user.task.action.UserDashboardActions">
 		<property name="userServices" ref="userServices"></property>
 		<property name="listDetails" ref="listDetails"></property>
 	</bean>
 
 	<!-- attendance to user -->
-	<bean name="/monthlyLeaves" class="com.tryzens.portal.lms.common.details.ListDetails">
+	<bean name="/monthlyLeaves" class="com.thoughtservice.portal.lms.common.details.ListDetails">
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
@@ -325,7 +325,7 @@
 	</bean>
 	
 	<!-- Upload attendance -->	
-	<bean name="/fileUpload" class="com.tryzens.portal.utils.fileupload.FileUploadAction">		
+	<bean name="/fileUpload" class="com.thoughtservice.portal.utils.fileupload.FileUploadAction">		
 	</bean>
 	
 </beans>

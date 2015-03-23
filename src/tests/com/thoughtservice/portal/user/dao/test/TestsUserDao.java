@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tryzens.portal.test.base.BaseTests;
-import com.tryzens.portal.user.User;
-import com.tryzens.portal.user.dao.UserDao;
+import com.thoughtservice.portal.test.base.BaseTests;
+import com.thoughtservice.portal.user.User;
+import com.thoughtservice.portal.user.dao.UserDao;
 
 
 public class TestsUserDao extends BaseTests{

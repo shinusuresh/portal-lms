@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tryzens Portal - 1.0</title>
+    <title>ThoughtService Portal - 1.0</title>
 	<link rel="shortcut icon" href="${host}/webapp/WEB-INF/jsp/common/favicon.ico">
     <!-- Bootstrap Core CSS -->
     <link href="${host}/css/bootstrap.min.css" rel="stylesheet">

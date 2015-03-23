@@ -9,11 +9,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tryzens.portal.test.base.BaseTests;
-import com.tryzens.portal.user.User;
-import com.tryzens.portal.user.skills.Skill;
-import com.tryzens.portal.user.skills.UserSkills;
-import com.tryzens.portal.user.skills.dao.SkillsDao;
+import com.thoughtservice.portal.test.base.BaseTests;
+import com.thoughtservice.portal.user.User;
+import com.thoughtservice.portal.user.skills.Skill;
+import com.thoughtservice.portal.user.skills.UserSkills;
+import com.thoughtservice.portal.user.skills.dao.SkillsDao;
 
 public class TestsSkillsDao extends BaseTests{
 

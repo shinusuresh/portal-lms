@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="adminServices" class="com.tryzens.portal.lms.admin.task.AdminServicesImpl">
+	<bean id="adminServices" class="com.thoughtservice.portal.lms.admin.task.AdminServicesImpl">
 		<property name="userDao" ref="userDao"></property>
 		<property name="roleDao" ref="roleDao"></property>
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
@@ -19,7 +19,7 @@
 		<property name="experienceDao" ref="experienceDao"></property>
 		<property name="adminGenericEmail" ref="adminGenericEmail"></property>
 	</bean>
-	<bean id="userServices" class="com.tryzens.portal.lms.user.task.UserServicesImpl">
+	<bean id="userServices" class="com.thoughtservice.portal.lms.user.task.UserServicesImpl">
 		<property name="userDao" ref="userDao"></property>
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
 		<property name="forgotPasswordEmail" ref="forgotPasswordEmail"></property>
@@ -38,7 +38,7 @@
 			ref="bankHolidayWorkingCancellationRequestNotification"></property>
 
 	</bean>
-	<bean id="managerServices" class="com.tryzens.portal.lms.manager.task.ManagerServicesImpl">
+	<bean id="managerServices" class="com.thoughtservice.portal.lms.manager.task.ManagerServicesImpl">
 		<property name="bankHolidayWorkingDao" ref="bankHolidayWorkingDao"></property>
 		<property name="leaveRequestDao" ref="leaveRequestDao"></property>
 		<property name="workFromHomeDao" ref="workFromHomeDao"></property>
@@ -46,18 +46,18 @@
 
 	</bean>
 	
-	<bean id="xlsxAttendanceParser" class="com.tryzens.portal.lms.admin.attendance.XlsxAttendanceParser">
+	<bean id="xlsxAttendanceParser" class="com.thoughtservice.portal.lms.admin.attendance.XlsxAttendanceParser">
 	</bean>
 	
-	<bean id="xlsAttendanceParser" class="com.tryzens.portal.lms.admin.attendance.XlsAttendanceParser">
+	<bean id="xlsAttendanceParser" class="com.thoughtservice.portal.lms.admin.attendance.XlsAttendanceParser">
 	</bean>
 	
-	<bean id="attendanceParserFactory" class="com.tryzens.portal.lms.admin.attendance.AttendanceParserFactory">
+	<bean id="attendanceParserFactory" class="com.thoughtservice.portal.lms.admin.attendance.AttendanceParserFactory">
 		<property name="xlsxAttendanceParser" ref="xlsxAttendanceParser"></property>
 		<property name="xlsAttendanceParser" ref="xlsAttendanceParser"></property>
 	</bean>
 	
-	<bean id="attendanceService" class="com.tryzens.portal.lms.admin.task.AttendanceServiceImpl">
+	<bean id="attendanceService" class="com.thoughtservice.portal.lms.admin.task.AttendanceServiceImpl">
 		<property name="attendanceParserFactory" ref="attendanceParserFactory"></property>
 		<property name="attendanceDao" ref="attendanceDao"></property>
 		<property name="userDao" ref="userDao"></property>

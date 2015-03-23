@@ -12,10 +12,10 @@
                 <sec:authorize var="loggedIn" access="isAuthenticated()" />
                 <c:choose>
                 	<c:when test="${loggedIn}">
-                		<a class="navbar-brand" href="userDashboardActions.do?method=listHolidaysAndLeaves"><img src="${host}/images/tryzens-logo.png"  alt=""/></a>
+                		<a class="navbar-brand" href="userDashboardActions.do?method=listHolidaysAndLeaves"><img src="${host}/images/logo.png"  alt=""/></a>
                 	</c:when>
                 	<c:otherwise>
-                		<a class="navbar-brand" href="index.html"><img src="${host}/images/tryzens-logo.png"  alt=""/></a>
+                		<a class="navbar-brand" href="index.html"><img src="${host}/images/logo.png"  alt=""/></a>
                 	</c:otherwise>
                 </c:choose>
                 

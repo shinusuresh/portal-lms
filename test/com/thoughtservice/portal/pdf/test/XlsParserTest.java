@@ -7,10 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
-import com.tryzens.portal.lms.admin.attendance.AttendanceParser;
-import com.tryzens.portal.lms.admin.attendance.XlsAttendanceParser;
-import com.tryzens.portal.lms.admin.task.AttendanceServiceImpl;
-import com.tryzens.portal.user.attendance.Attendance;
+import com.thoughtservice.portal.lms.admin.attendance.AttendanceParser;
+import com.thoughtservice.portal.lms.admin.attendance.XlsAttendanceParser;
+import com.thoughtservice.portal.lms.admin.task.AttendanceServiceImpl;
+import com.thoughtservice.portal.user.attendance.Attendance;
 
 @RunWith(value = BlockJUnit4ClassRunner.class)
 public class XlsParserTest {

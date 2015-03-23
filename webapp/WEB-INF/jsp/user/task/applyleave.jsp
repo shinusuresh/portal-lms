@@ -59,7 +59,7 @@ var eventObjects = [];
 					uniqueId: '<c:out value="${holiday.id}"/>',
 					start: '<fmt:formatDate pattern="yyyy-MM-dd" value="${holiday.date}" />',
 					end: '<fmt:formatDate pattern="yyyy-MM-dd" value="${holiday.date}" />',
-					type: 'Tryzens Holiday',
+					type: 'ThoughtService Holiday',
 					title: '<c:out value="${holiday.description}"/>',
 					editable: false,
 					backgroundColor: '#F5A9A9'
@@ -152,7 +152,7 @@ var eventObjects = [];
 			$('#createEventModalEvent #type_input').val(event.type);
 			var type= $('#type_input').val();
 			switch(type){
-			case "Tryzens Holiday":
+			case "ThoughtService Holiday":
 				$('#createEventModalHoliday').modal('show');
 				break;
 			default: 
@@ -189,8 +189,8 @@ var eventObjects = [];
 			var approver= $('#approver_input').val();
 			var status;
 			switch(type){
-			case "Tryzens Holiday":
-				status='Tryzens Holiday'
+			case "ThoughtService Holiday":
+				status='ThoughtService Holiday'
 				break;
 			default: 
 				status = 'Request status: '+event.status;
@@ -214,10 +214,10 @@ var eventObjects = [];
         	console.log($(event));
         	var eventType = event.type;
         	var statusText = "";
-        	if(eventType != 'Tryzens Holiday'){
+        	if(eventType != 'ThoughtService Holiday'){
         		statusText = event.type + ' ' + event.status + ' with ' + event.approver;
         	} else {
-        		statusText = 'Tryzens Holiday';
+        		statusText = 'ThoughtService Holiday';
         	}
         	
         	element.tooltip({	            	            
@@ -253,7 +253,7 @@ var eventObjects = [];
 		        		{
 		    			var type= $('#type_input').val();
 		    			switch(type){
-		    			case "Tryzens Holiday":
+		    			case "ThoughtService Holiday":
 		    				$('#createEventModalHoliday').modal('show');
 		    				break;
 		    			default: 

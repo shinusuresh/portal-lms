@@ -10,9 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tryzens.portal.jobs.email.AnniversaryEmailScheduler;
-import com.tryzens.portal.user.User;
-import com.tryzens.portal.user.dao.UserDao;
+import com.thoughtservice.portal.jobs.email.AnniversaryEmailScheduler;
+import com.thoughtservice.portal.user.User;
+import com.thoughtservice.portal.user.dao.UserDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({

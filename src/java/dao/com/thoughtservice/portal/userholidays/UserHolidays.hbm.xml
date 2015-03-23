@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.thoughtservice.portal.userholidays.UserHolidays" table="USER_HOLIDAYS"
+		catalog="thoughtservice_portal" lazy="false">
+		<cache usage="read-write" />
+
+		<id name="id" type="long">
+			<column name="UNIQUE_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="year" type="int">
+			<column name="YEAR" length="4" not-null="true" />
+		</property>
+		<property name="leavesTaken" type="double">
+			<column name="LEAVES_TAKEN" />
+		</property>
+		<property name="bankHolidayWorkingPaid" type="double">
+			<column name="BANK_HOLIDAY_WORKING_PAID" />
+		</property>
+		<property name="bankHolidayWorkingCompoff" type="double">
+			<column name="BANK_HOLIDAY_WORKING_COMPOFF" />
+		</property>
+		<property name="workFromHome" type="double">
+			<column name="WORK_FROM_HOME" />
+		</property>
+		<property name="weekendWorkingPaid" type="double">
+			<column name="WEEKEND_WORKING_PAID" />
+		</property>
+		
+		<property name="weekendWorkingCompoff" type="double">
+			<column name="WEEKEND_WORKING_COMPOFF" />
+		</property>
+		
+		<property name="leavesRemaining" type="double" not-null="true">
+			<column name="LEAVES_REMAINING" />
+		</property>
+		<property name="carryForwardedLeaves" type="double">
+			<column name="CARRY_FORWARDED_LEAVES" />
+		</property>
+		<many-to-one name="user" column="USER_ID"
+			class="com.thoughtservice.portal.user.User" embed-xml="false" not-null="false" />
+
+	</class>
+</hibernate-mapping>

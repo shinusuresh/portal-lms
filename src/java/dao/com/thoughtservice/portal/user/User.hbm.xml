@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.thoughtservice.portal.user.User" table="USER" catalog="thoughtservice_portal"
+		lazy="false">
+		<cache usage="read-write"/>
+
+		<id name="id" type="long">
+         <column name="USER_ID" />
+        <generator class="identity" />
+        </id>
+		<property name="status" type="int">
+			<column name="STATUS" length="1" not-null="true" />
+		</property>
+		<property name="employeeCode" type="long">
+			<column name="EMPLOYEE_CODE" not-null="true" />
+		</property>
+		<property name="firstName" type="string">
+			<column name="FIRST_NAME" length="45" not-null="true" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="LAST_NAME" length="45" />
+		</property>
+		<property name="address" type="string">
+			<column name="ADDRESS" length="100" />
+		</property>
+		<property name="email" type="string">
+			<column name="EMAIL" length="45" not-null="true" />
+		</property>
+		<property name="gender" type="string">
+			<column name="GENDER" length="6" />
+		</property>
+		<property name="dateOfBirth" type="date">
+			<column name="DATE_OF_BIRTH" length="19" not-null="true" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="MOBILE" length="15" />
+		</property>
+		<property name="department" type="string">
+			<column name="DEPARTMENT" length="20" />
+		</property>
+		<property name="pan" type="string">
+			<column name="PAN" not-null="true" length="10" />
+		</property>
+		<property name="password" type="string">
+			<column name="PASSWORD" not-null="true" length="50" />
+		</property>
+		<property name="dateOfJoining" type="date">
+			<column name="DATE_OF_JOINING" length="19" not-null="true" />
+		</property>
+		<property name="createdDate" type="timestamp">
+			<column name="CREATED_DATE" length="19" not-null="true" />
+		</property>
+		<property name="annualLeaves" type="integer">
+			<column name="ANNUAL_LEAVES" length="19"/>
+		</property>
+		<property name="lastUpdate" type="timestamp">
+			<column name="LASTUPDATE_DATE" length="19" />
+		</property>
+
+		<!-- Relation between roles -->
+		<set name="roles" table="USER_ROLES">
+			<cache usage="read-write"/>
+			<key column="USER_ID" />
+			<many-to-many column="ROLE_ID" class="com.thoughtservice.portal.role.Role" />
+		</set>
+		<!-- Relation to experience -->
+		<set name="experience" cascade="all">
+			<key column="USER_ID" not-null="true" />
+			<one-to-many class="com.thoughtservice.portal.user.experience.Experience" />
+		</set>
+	
+	</class>
+
+
+</hibernate-mapping>
