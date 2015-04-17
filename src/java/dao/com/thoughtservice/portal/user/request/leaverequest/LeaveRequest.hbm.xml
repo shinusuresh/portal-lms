@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.thoughtservice.portal.user.request.leaverequest.LeaveRequest"
-		table="LEAVE_REQUEST" catalog="thoughtservice_portal" lazy="false">
+		table="LEAVE_REQUEST" lazy="false">
 
 		<id name="id" type="long">
 			<column name="REQUEST_ID" />

@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.thoughtservice.portal.investmentdeclaration.form80c.Form80c"
-		table="FORM_80C" catalog="thoughtservice_portal" lazy="false">
+		table="FORM_80C" lazy="false">
 
 		<id name="id" type="long">
 			<column name="ID" />

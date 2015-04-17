@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.thoughtservice.portal.user.request.workfromhome.WorkFromHome"
-		table="WORK_FROM_HOME" catalog="thoughtservice_portal" lazy="false">
+		table="WORK_FROM_HOME" lazy="false">
 		<id name="id" type="long">
 			<column name="REQUEST_ID" />
 			<generator class="identity" />

@@ -3,8 +3,7 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.thoughtservice.portal.user.skills.Skill" table="SKILLS"
-		catalog="thoughtservice_portal" lazy="false">
+	<class name="com.thoughtservice.portal.user.skills.Skill" table="SKILLS" lazy="false">
 
 		<id name="id" type="long">
 			<column name="SKILLS_ID" />

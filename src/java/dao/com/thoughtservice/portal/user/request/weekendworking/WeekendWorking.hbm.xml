@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.thoughtservice.portal.user.request.weekendworking.WeekendWorking"
-		table="WEEKEND_WORKING" catalog="thoughtservice_portal" lazy="false">
+		table="WEEKEND_WORKING" lazy="false">
 		<id name="Id" type="long">
 			<column name="REQUEST_ID" />
 			<generator class="increment" />

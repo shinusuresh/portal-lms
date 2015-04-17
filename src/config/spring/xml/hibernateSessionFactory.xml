@@ -24,10 +24,27 @@
 		</property>
 
 		<property name="hibernateProperties">
-			<props>
+			<!-- MYSQL -->
+			<!-- <props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.scheam.create}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.schema.create}</prop>
+				<prop key="hibernate.hbm2ddl.import_files">data/import.sql</prop>				
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">cache/ehcache.xml</prop>
+				
+				<prop key="hibernate.generate_statistics">true</prop>
+				
+			</props> -->
+			
+			<!-- HSQL DB -->
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.schema.create}</prop>
 				<prop key="hibernate.hbm2ddl.import_files">data/import.sql</prop>				
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>

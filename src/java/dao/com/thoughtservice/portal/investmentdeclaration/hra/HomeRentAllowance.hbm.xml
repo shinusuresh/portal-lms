@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.thoughtservice.portal.investmentdeclaration.hra.HomeRentAllowance"
-		table="HRA" catalog="thoughtservice_portal" lazy="false">
+		table="HRA" lazy="false">
 
 		<id name="id" type="long">
 			<column name="ID" />

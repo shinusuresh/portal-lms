@@ -3,8 +3,7 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.thoughtservice.portal.holidays.CalendarHolidays" table="Calendar_holidays"
-		catalog="thoughtservice_portal">
+	<class name="com.thoughtservice.portal.holidays.CalendarHolidays" table="Calendar_holidays">
 		<id name="id" type="long">
 			<column name="ID" />
 			<generator class="identity" />
