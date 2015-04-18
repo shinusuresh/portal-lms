@@ -2,9 +2,12 @@
 
 ## Steps to do to configure the application
 
-1. Create a database in mysql named thoughtservice_portal with username as root and password as root
-2. Add the application to Tomcat 6+ server
-3. Start the server. Monitor if any errors appearing
+```
+  mvn clean package
+```
+
+  Deploy __target/portal-lms.jar__ to jetty or tomcat
+
 4. Hit application to see if login page is appearing - http://localhost:8080/portal-lms/
 
 
