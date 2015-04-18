@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Role table -->
+	<class name="com.thoughtservice.portal.role.Role" table="ROLE" lazy="false" >
+		<cache usage="read-write"/>
+		
+		<id name="id" type="long">
+			<column name="ROLE_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column name="NAME" length="45" not-null="true" />
+		</property>
+		<property name="description" type="string">
+			<column name="DESCRIPTION" length="245" />
+		</property>
+		<property name="lastUpdate" type="timestamp">
+			<column name="LASTUPDATE_DATE" length="19" />
+		</property>
+		<!-- Relation between user -->
+		<set name="users" table="USER_ROLES">
+			<cache usage="read-write"/>
+			<key column="ROLE_ID" />
+			<many-to-many column="USER_ID" class="com.thoughtservice.portal.user.User" />
+		</set>
+	</class>
+</hibernate-mapping>

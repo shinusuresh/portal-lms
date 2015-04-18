@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.thoughtservice.portal.investmentdeclaration.form80c.Form80c"
+		table="FORM_80C" lazy="false">
+
+		<id name="id" type="long">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="payment_of_insurance_premium" type="big_decimal">
+			<column name="payment_of_insurance_premium"/>
+		</property>
+		<property name="employee_contribution_to_pf" type="big_decimal">
+			<column name="employee_contribution_to_pf"/>
+		</property>
+		<property name="deposit_in_public_pf" type="big_decimal">
+			<column name="deposit_in_public_pf"/>
+		</property>
+		<property name="equity_tax_saving_mutualfund" type="big_decimal">
+			<column name="equity_tax_saving_mutualfund"/>
+		</property>
+		<property name="purchase_of_national_saving_certificate" type="big_decimal">
+			<column name="purchase_of_national_saving_certificate"/>
+		</property>
+		<property name="national_savings_scheme_deposit" type="big_decimal">
+			<column name="national_savings_scheme_deposit"/>
+		</property>
+		<property name="postoffice_saving_bonds_investment" type="big_decimal">
+			<column name="postoffice_saving_bonds_investment"/>
+		</property>
+		<property name="new_pension_scheme_deposit_of_80ccd" type="big_decimal">
+			<column name="new_pension_scheme_deposit_of_80ccd"/>
+		</property>
+		<property name="house_loan_principle_payment" type="big_decimal">
+			<column name="house_loan_principle_payment"/>
+		</property>
+		<property name="tax_saving_fixed_deposit" type="big_decimal">
+			<column name="tax_saving_fixed_deposit"/>
+		</property>
+		<property name="stamp_duty_registration_charges_for_house" type="big_decimal">
+			<column name="stamp_duty_registration_charges_for_house"/>
+		</property>
+		<property name="other_eligible_investment" type="big_decimal">
+			<column name="other_eligible_investment" />
+		</property>
+		<property name="pension_fund" type="big_decimal">
+			<column name="pension_fund"/>
+		</property>
+		<property name="total" type="big_decimal">
+			<column name="total"/>
+		</property>
+		<property name="year" type="int">
+			<column name="year"/>
+		</property>
+		<many-to-one name="user" column="USER_ID"
+			class="com.thoughtservice.portal.user.User" embed-xml="false" not-null="false" />
+	</class>
+</hibernate-mapping>

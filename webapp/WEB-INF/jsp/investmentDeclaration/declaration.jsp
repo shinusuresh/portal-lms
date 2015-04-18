@@ -2,12 +2,12 @@
 	pageEncoding="ISO-8859-1"%>
 <%@include file="/WEB-INF/jsp/common/commontaglibs.jspf"%>
 <%@include file="/WEB-INF/jsp/common/environment.jspf"%>
-<%-- <%@page import="com.tryzens.portal.investmentdeclaration.form80.Form80"%> --%>
+<%-- <%@page import="com.thoughtservice.portal.investmentdeclaration.form80.Form80"%> --%>
 <%-- <%@page
-	import="com.tryzens.portal.investmentdeclaration.form80c.Form80c"%> --%>
+	import="com.thoughtservice.portal.investmentdeclaration.form80c.Form80c"%> --%>
 <%-- <%@page
-	import="com.tryzens.portal.investmentdeclaration.hra.HomeRentAllowance"%> --%>
-<%-- <%@page import="com.tryzens.portal.user.User"%> --%>
+	import="com.thoughtservice.portal.investmentdeclaration.hra.HomeRentAllowance"%> --%>
+<%-- <%@page import="com.thoughtservice.portal.user.User"%> --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -41,8 +41,8 @@
 	</taskdef>
 
 	<!-- Define the Sonar properties -->
-	<property name="sonar.projectKey" value="com.tryzens.portal:portal-lms" />
-	<property name="sonar.projectName" value="Tryzens Portal LMS" />
+	<property name="sonar.projectKey" value="com.thoughtservice.portal:portal-lms" />
+	<property name="sonar.projectName" value="Thoughtservice Portal LMS" />
 	<property name="sonar.projectVersion" value="1.0" />
 	<property name="sonar.language" value="java" />
 	<property name="sonar.sources" value="src" />

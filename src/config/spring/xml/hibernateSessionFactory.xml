@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 	<context:annotation-config />
-	<context:component-scan base-package="com.tryzens.portal" />
+	<context:component-scan base-package="com.thoughtservice.portal" />
 	<!-- Hibernate session factory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -24,10 +24,27 @@
 		</property>
 
 		<property name="hibernateProperties">
-			<props>
+			<!-- MYSQL -->
+			<!-- <props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.scheam.create}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.schema.create}</prop>
+				<prop key="hibernate.hbm2ddl.import_files">data/import.sql</prop>				
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">cache/ehcache.xml</prop>
+				
+				<prop key="hibernate.generate_statistics">true</prop>
+				
+			</props> -->
+			
+			<!-- HSQL DB -->
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.schema.create}</prop>
 				<prop key="hibernate.hbm2ddl.import_files">data/import.sql</prop>				
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
@@ -42,24 +59,24 @@
 
 		<property name="mappingResources">
 			<list>
-				<value>com/tryzens/portal/user/User.hbm.xml</value>
-				<value>com/tryzens/portal/role/Role.hbm.xml</value>
-				<value>com/tryzens/portal/user/experience/Experience.hbm.xml</value>
-				<value>com/tryzens/portal/holidays/CalendarHolidays.hbm.xml</value>
-				<value>com/tryzens/portal/user/request/bankholidayworking/BankHolidayWorking.hbm.xml
+				<value>com/thoughtservice/portal/user/User.hbm.xml</value>
+				<value>com/thoughtservice/portal/role/Role.hbm.xml</value>
+				<value>com/thoughtservice/portal/user/experience/Experience.hbm.xml</value>
+				<value>com/thoughtservice/portal/holidays/CalendarHolidays.hbm.xml</value>
+				<value>com/thoughtservice/portal/user/request/bankholidayworking/BankHolidayWorking.hbm.xml
 				</value>
-				<value>com/tryzens/portal/user/request/leaverequest/LeaveRequest.hbm.xml
+				<value>com/thoughtservice/portal/user/request/leaverequest/LeaveRequest.hbm.xml
 				</value>
-				<value>com/tryzens/portal/user/request/workfromhome/WorkFromHome.hbm.xml
+				<value>com/thoughtservice/portal/user/request/workfromhome/WorkFromHome.hbm.xml
 				</value>
-				<value>com/tryzens/portal/user/skills/Skill.hbm.xml</value>
-				<value>com/tryzens/portal/user/skills/UserSkills.hbm.xml</value>
-				<value>com/tryzens/portal/userholidays/UserHolidays.hbm.xml</value>
-				<value>com/tryzens/portal/user/request/weekendworking/WeekendWorking.hbm.xml</value>
-				<value>com/tryzens/portal/investmentdeclaration/form80/Form80.hbm.xml</value>	
-				<value>com/tryzens/portal/investmentdeclaration/form80c/Form80c.hbm.xml</value>	
-				<value>com/tryzens/portal/investmentdeclaration/hra/HomeRentAllowance.hbm.xml</value>		
-				<value>com/tryzens/portal/user/attendance/Attendance.hbm.xml</value>
+				<value>com/thoughtservice/portal/user/skills/Skill.hbm.xml</value>
+				<value>com/thoughtservice/portal/user/skills/UserSkills.hbm.xml</value>
+				<value>com/thoughtservice/portal/userholidays/UserHolidays.hbm.xml</value>
+				<value>com/thoughtservice/portal/user/request/weekendworking/WeekendWorking.hbm.xml</value>
+				<value>com/thoughtservice/portal/investmentdeclaration/form80/Form80.hbm.xml</value>	
+				<value>com/thoughtservice/portal/investmentdeclaration/form80c/Form80c.hbm.xml</value>	
+				<value>com/thoughtservice/portal/investmentdeclaration/hra/HomeRentAllowance.hbm.xml</value>		
+				<value>com/thoughtservice/portal/user/attendance/Attendance.hbm.xml</value>
 			</list>
 		</property>
 
@@ -72,7 +89,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 	<aop:config>
 		<aop:pointcut id="userActionsServiceOperation"
-			expression="execution(* com.tryzens.portal.lms.admin.task.action.UserActions.*(..))" />
+			expression="execution(* com.thoughtservice.portal.lms.admin.task.action.UserActions.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userActionsServiceOperation" />
 	</aop:config>
 

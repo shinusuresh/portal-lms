@@ -5,3 +5,8 @@ groovy/*
 node_modules/*
 .svn/*
 webapp/WEB-INF/classes/
+compile.log
+.classpath
+.project
+/bin/
+/.settings/

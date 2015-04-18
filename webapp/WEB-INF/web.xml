@@ -26,7 +26,7 @@
 	<!-- Set portal filter -->
 	<filter>
 		<filter-name>portalSessionFilter</filter-name>
-		<filter-class>com.tryzens.portal.filter.PortalSessionFilter</filter-class>
+		<filter-class>com.thoughtservice.portal.filter.PortalSessionFilter</filter-class>
 	</filter>
 
 	<filter-mapping>

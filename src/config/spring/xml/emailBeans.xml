@@ -75,7 +75,7 @@
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
 
-	<bean id="emailBase" class="com.tryzens.portal.lms.mail.EmailBase"
+	<bean id="emailBase" class="com.thoughtservice.portal.lms.mail.EmailBase"
 		abstract="true">
 		<property name="mailSender" ref="mailSender" />
 		<property name="templateEngine" ref="templateEngine"></property>
@@ -84,55 +84,55 @@
 
 	<!-- Customized EMAILS -->
 
-	<bean id="accountActivationEmail" class="com.tryzens.portal.lms.mail.AccountActivationEmail"
+	<bean id="accountActivationEmail" class="com.thoughtservice.portal.lms.mail.AccountActivationEmail"
 		parent="emailBase" />
-	<bean id="forgotPasswordEmail" class="com.tryzens.portal.lms.mail.ForgotPasswordEmail"
+	<bean id="forgotPasswordEmail" class="com.thoughtservice.portal.lms.mail.ForgotPasswordEmail"
 		parent="emailBase" />
-	<bean id="anniversaryEmail" class="com.tryzens.portal.lms.mail.AnniversaryEmail"
+	<bean id="anniversaryEmail" class="com.thoughtservice.portal.lms.mail.AnniversaryEmail"
 		parent="emailBase" />
 	<bean id="leaveRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.LeaveRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.LeaveRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="workFromHomeRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.WorkFromHomeRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.WorkFromHomeRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="bankHolidayWorkingRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.BankHolidayWorkingRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.BankHolidayWorkingRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="leaveCancellationRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.LeaveCancellationRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.LeaveCancellationRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="workFromHomeCancellationRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.WorkFromHomeCancellationRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.WorkFromHomeCancellationRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="bankHolidayWorkingCancellationRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.BankHolidayWorkingCancellationRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.BankHolidayWorkingCancellationRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="weekendWorkingRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.WeekendWorkingRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.WeekendWorkingRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="weekendWorkingCancellationRequestNotification"
-		class="com.tryzens.portal.lms.mail.request.WeekendWorkingCancellationRequestNotification"
+		class="com.thoughtservice.portal.lms.mail.request.WeekendWorkingCancellationRequestNotification"
 		parent="emailBase">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	
 	<!-- Generic email for admin -->
-	<bean id="adminGenericEmail" class="com.tryzens.portal.lms.mail.AdminGenericEmail"
+	<bean id="adminGenericEmail" class="com.thoughtservice.portal.lms.mail.AdminGenericEmail"
 		parent="emailBase" />
 
 </beans>

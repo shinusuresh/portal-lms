@@ -12,17 +12,17 @@
     <task:annotation-driven />
     
     <!-- Custom scheduler jobs -->
-    <bean id="anniversaryEmailScheduler" class="com.tryzens.portal.jobs.email.AnniversaryEmailScheduler">
+    <bean id="anniversaryEmailScheduler" class="com.thoughtservice.portal.jobs.email.AnniversaryEmailScheduler">
     	<property name="userDao" ref="userDao"></property>
     	<property name="anniversaryEmail" ref="anniversaryEmail"></property>
     </bean>
-    <bean id="calculateLeaves" class="com.tryzens.portal.jobs.calculateleaves.CalculateLeaves">
+    <bean id="calculateLeaves" class="com.thoughtservice.portal.jobs.calculateleaves.CalculateLeaves">
     	<property name="userHolidaysDao" ref="userHolidaysDao"></property>
     	<property name="userDao" ref="userDao"></property>
     </bean>
     
     <!-- Job to process attendance -->
-    <bean id="processAttendance" class="com.tryzens.portal.jobs.attendance.ProcessAttendance">    	
+    <bean id="processAttendance" class="com.thoughtservice.portal.jobs.attendance.ProcessAttendance">    	
     	<property name="attendanceService" ref="attendanceService"></property>
     </bean>
 </beans>

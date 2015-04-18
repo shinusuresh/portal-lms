@@ -23,14 +23,14 @@
 		
 		
 	<!-- Cache settings per class -->
-    <cache name="com.tryzens.portal.user.skills.UserSkills"
+    <cache name="com.thoughtservice.portal.user.skills.UserSkills"
         maxElementsInMemory="1000"
         eternal="false"
         timeToIdleSeconds="300"
         timeToLiveSeconds="600"
         overflowToDisk="true"/>
         
-    <cache name="com.tryzens.portal.role.Role"
+    <cache name="com.thoughtservice.portal.role.Role"
         maxElementsInMemory="1000"
         eternal="false"
         timeToIdleSeconds="300"
